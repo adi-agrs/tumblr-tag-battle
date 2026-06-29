@@ -14,11 +14,7 @@ def fetch_posts_for_tag(tag, max_posts):
         response = requests.get("https://api.tumblr.com/v2/tagged", params=params)
         data = response.json()
         posts = data["response"]
-        # for post in posts:
-            # print("Name:", post["blog_name"])
-            # print("Tags:", post["tags"])
-            # print("Note count:", post["note_count"])
-        
+
         if not posts: 
             break  # No more posts to fetch.
 

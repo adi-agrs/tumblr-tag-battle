@@ -9,4 +9,4 @@ access_token = os.getenv("TUMBLR_ACCESS_TOKEN")
 access_secret = os.getenv("TUMBLR_ACCESS_SECRET")
 fetch_limit = 100 # maximum number of posts 
 page_length = 20 # page length always needs to be smaller than max_posts
-leaderboard_limit = 5 # must be smaller than fetch_limit, otherwise it will return all posts
+leaderboard_limit = 10 # must be smaller than fetch_limit, otherwise it will return all posts

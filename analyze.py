@@ -4,8 +4,6 @@ from stats import rank_by_notes
 from config import fetch_limit, leaderboard_limit
 from notes_breakdown import get_notes_breakdown
 
-
-
 def analyze_tag(tag):
 
     total_notes_for_tag = 0

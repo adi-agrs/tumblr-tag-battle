@@ -1,4 +1,3 @@
-import time 
 import requests
 from requests_oauthlib import OAuth1
 from config import api_key, api_secret, access_token, access_secret

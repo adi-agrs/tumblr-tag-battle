@@ -1,5 +1,6 @@
 import sys
 from analyze import analyze_tag
+from leaderboards import display_leaderboard
 
 tag1 = sys.argv[1]
 tag2 = sys.argv[2]
@@ -14,8 +15,19 @@ elif notes_2 > notes_1:
 else:
     print(f"\n🤝 It's a tie! Both tags have {notes_1} notes.")
 
+print(f"\n Select tag to display leaderboard: (1) {tag1} or (2) {tag2}")
+tag_choice = input("Enter the number of your choice: ")
+
+if tag_choice == "1":
+    display_leaderboard(top_posts_1)
+elif tag_choice == "2":
+    display_leaderboard(top_posts_2)
+
 # TODO: 
 # - Crown winner based on higher number of total notes between two tags (DONE)
-# - Display the breakdown of each post in the leaderboard (like, reblog, reply)
-# - get some way to extract the image form highest liked tag post and display it on the website
+# - Display the breakdown of each post in the leaderboard (like, reblog, reply) (KINDA DONE)
+# - get some way to extract the image form highest liked tag post and display it on the website 
 # - Implement a simple web interface to display the results
+
+# note - theres probably no point in displaying the breakdown of each post since the leaderboard is pretty limited..
+# get the post breakdown for the leaderboard posts, no need to give out the sums. 

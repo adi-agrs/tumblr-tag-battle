@@ -43,3 +43,8 @@ print(f"\nTotal likes for tag 'lestat': {total_likes_for_tag}")
 print(f"Total reblogs for tag 'lestat': {total_reblogs_for_tag}")
 print(f"Total replies for tag 'lestat': {total_replies_for_tag}")
 
+# TODO: 
+# - Crown winner based on higher number of total notes between two tags 
+# - Display the breakdown of each post in the leaderboard (like, reblog, reply)
+# - get some way to extract the image form highest liked tag post and display it on the website
+# - Implement a simple web interface to display the results

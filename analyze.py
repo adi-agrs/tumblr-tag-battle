@@ -41,8 +41,7 @@ def analyze_tag(tag):
         post["reply_count"] = breakdown["reply"]
         total_replies_for_tag += breakdown["reply"]
 
-        time.sleep(0.5)  # Sleep to avoid hitting rate limits.
-
+        time.sleep(0.1)  # Sleep to avoid hitting rate limits.
 
     print(f"\nTotal notes for tag '{tag}': {total_notes_for_tag}")
     print(f"\nTotal likes for tag '{tag}': {total_likes_for_tag}")

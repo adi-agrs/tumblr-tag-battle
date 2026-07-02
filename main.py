@@ -18,10 +18,16 @@ else:
 print(f"\n Select tag to display leaderboard: (1) {tag1} or (2) {tag2}")
 tag_choice = input("Enter the number of your choice: ")
 
-if tag_choice == "1":
-    display_leaderboard(top_posts_1)
-elif tag_choice == "2":
-    display_leaderboard(top_posts_2)
+while(1):
+    if tag_choice not in ["1", "2"]:
+        print("Invalid choice. Please enter 1 or 2.")
+        tag_choice = input("Enter the number of your choice: ")
+    elif tag_choice == "1":
+        display_leaderboard(top_posts_1)
+    elif tag_choice == "2":
+        display_leaderboard(top_posts_2)
+    else:
+        break
 
 # TODO: 
 # - Crown winner based on higher number of total notes between two tags (DONE)

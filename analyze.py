@@ -3,16 +3,15 @@ from fetch import fetch_posts_for_tag
 from stats import rank_by_notes
 from config import fetch_limit, leaderboard_limit
 from notes_breakdown import get_notes_breakdown
+import json
 
 def analyze_tag(tag):
 
     total_notes_for_tag = 0
-    total_likes_for_tag = 0
-    total_reblogs_for_tag = 0
-    total_replies_for_tag = 0
 
     print(f"Fetching posts for tag '{tag}'...\n")
     all_posts = fetch_posts_for_tag(tag=tag, max_posts=fetch_limit)
+    print(json.dumps(all_posts, indent=2, default=str))  # Print the fetched posts in a readable format
     print(f"Fetched {len(all_posts)} posts for tag '{tag}'.\n")
 
     # top_posts is the base leaderboard.
@@ -35,17 +34,8 @@ def analyze_tag(tag):
     for post in top_posts:
         breakdown = get_notes_breakdown(post["blog_name"], post["id"])
         post["like_count"] = breakdown["like"]
-        total_likes_for_tag += breakdown["like"]
         post["reblog_count"] = breakdown["reblog"]
-        total_reblogs_for_tag += breakdown["reblog"]
         post["reply_count"] = breakdown["reply"]
-        total_replies_for_tag += breakdown["reply"]
-
         time.sleep(0.1)  # Sleep to avoid hitting rate limits.
 
-    print(f"\nTotal notes for tag '{tag}': {total_notes_for_tag}")
-    print(f"\nTotal likes for tag '{tag}': {total_likes_for_tag}")
-    print(f"Total reblogs for tag '{tag}': {total_reblogs_for_tag}")
-    print(f"Total replies for tag '{tag}': {total_replies_for_tag}")
-
-    return top_posts, total_notes_for_tag, total_likes_for_tag, total_reblogs_for_tag, total_replies_for_tag
+    return top_posts, total_notes_for_tag

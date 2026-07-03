@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "Hello, World!"
+    return "HOMEPAAAAAAAAAGE!"
 
 @app.route('/tags/<tag1>')
 def show_tag(tag1):
@@ -25,7 +25,7 @@ def compare_tags():
             winner = f"🏆 Winner: #{tag2} with {notes_2} total notes!"
         else:
             winner = f"🤝 It's a tie! Both tags have {notes_1} notes."
-        return winner
+        return winner 
     
     # If GET request, render a simple form to input tags
     return """

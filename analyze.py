@@ -11,7 +11,6 @@ def analyze_tag(tag):
 
     print(f"Fetching posts for tag '{tag}'...\n")
     all_posts = fetch_posts_for_tag(tag=tag, max_posts=fetch_limit)
-    print(json.dumps(all_posts, indent=2, default=str))  # Print the fetched posts in a readable format
     print(f"Fetched {len(all_posts)} posts for tag '{tag}'.\n")
 
     # top_posts is the base leaderboard.

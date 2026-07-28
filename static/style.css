@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+     background-color: #fafafa;
+    color: #111;
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 0 24px;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+h2 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 48px;
+}
+
+h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #999;
+    margin-bottom: 16px;
+}
+
+.battle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+}
+
+.post {
+    padding: 16px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.post-name {
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+}
+
+.post-stats {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.back {
+    font-size: 0.85rem;
+    color: #999;
+    text-decoration: none;
+}
+
+.back:hover {
+    color: #111;
+}

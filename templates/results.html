@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Results — Tumblr Tag Battle</title>
+</head>
+<body>
+    <h1>⚔️ #{{ tag1 }} vs #{{ tag2 }}</h1>
+
+    {% if winner %}
+        <h2>🏆 Winner: #{{ winner }}!</h2>
+    {% else %}
+        <h2>🤝 It's a tie!</h2>
+    {% endif %}
+
+    <div>
+        <h3>#{{ tag1 }} — {{ notes_1 }} total notes</h3>
+        {% for post in top_posts_1 %}
+            <p>{{ post.blog_name }} — {{ post.note_count }} notes
+            (❤️ {{ post.like_count }} | 🔁 {{ post.reblog_count }} | 💬 {{ post.reply_count }})</p>
+        {% endfor %}
+    </div>
+
+    <div>
+        <h3>#{{ tag2 }} — {{ notes_2 }} total notes</h3>
+        {% for post in top_posts_2 %}
+            <p>{{ post.blog_name }} — {{ post.note_count }} notes
+            (❤️ {{ post.like_count }} | 🔁 {{ post.reblog_count }} | 💬 {{ post.reply_count }})</p>
+        {% endfor %}
+    </div>
+
+    <a href="/">← Try another battle</a>
+</body>
+</html>

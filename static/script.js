@@ -1,4 +1,3 @@
-
 const coords = { x: 0, y: 0 };
 const circles = document.querySelectorAll(".circle");
 const cursor = document.querySelector(".cursor");
@@ -90,6 +89,9 @@ if (form) {
         
         waveLeft.style.width = "50vw";
         waveRight.style.width = "50vw";
+        const sound = document.getElementById("snap-sound");
+        sound.currentTime = 0; // resets to start if already playing
+        sound.play();
         
         setTimeout(function() {
             document.querySelector(".content").classList.add("hidden");
@@ -110,6 +112,9 @@ if (a) {
 
         waveLeft.style.width = "50vw";
         waveRight.style.width = "50vw";
+        const sound = document.getElementById("snap-sound");
+        sound.currentTime = 0; // resets to start if already playing
+        sound.play();
 
         setTimeout(function() {
             document.querySelector(".content").classList.add("hidden");
@@ -118,4 +123,17 @@ if (a) {
             window.location.href = a.href;
         }, 900);
     });
+}
+
+function fireConfetti() {
+    const sound = document.getElementById("confetti-sound");
+    sound.volume = 0.4; // 0 = silent, 1 = full volume
+    sound.currentTime = 0; // resets to start if already playing
+    sound.play();
+    setTimeout( function() { 
+    confetti({ particleCount: 100, angle: 60, colors: ["#ffd700", "#ffb300", "#ff8f00", "#fafafa", "#cccccc"], spread: 70, origin: { x: 0, y: 0.6 } });
+    confetti({ particleCount: 100, angle: 120, colors: ["#ffd700", "#ffb300", "#ff8f00", "#fafafa", "#cccccc"], spread: 70, origin: { x: 1, y: 0.6 } });
+    confetti({ particleCount: 100, angle: 60, colors: ["#ffd700", "#ffb300", "#ff8f00", "#fafafa", "#cccccc"], spread: 70, origin: { x: 0, y: 0.2 } });
+    confetti({ particleCount: 100, angle: 120, colors: ["#ffd700", "#ffb300", "#ff8f00", "#fafafa", "#cccccc"], spread: 70, origin: { x: 1, y: 0.2 } });
+    }, 0);
 }

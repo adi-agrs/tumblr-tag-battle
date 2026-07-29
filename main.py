@@ -30,11 +30,13 @@ while(1):
         break
 
 # TODO: 
-# - work on loading screen 
+# - work on loading screen (basic version done)
+# - customize the confetti more (done)
+# - make pressing the fight button on empty slots not crash the website
 # - work on getting images for the tag 
 # - work on comparison page 
 # - make into an actual website 
-# - done
+# - 
 
 # note - theres probably no point in displaying the breakdown of each post since the leaderboard is pretty limited..
 # get the post breakdown for the leaderboard posts, no need to give out the sums. 

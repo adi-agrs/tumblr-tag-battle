@@ -266,6 +266,41 @@ input::placeholder {
     }
 }
 
+.results-container {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 24px;
+}
+
+.confetti-button {
+    font-size: 1.7rem;
+    text-align: center;
+    width: 150px;
+    height: 150px;
+    padding: 3px 40px;
+    border-radius: 100%;
+    margin-bottom: 20px;
+    margin-left: 5px;
+    font-weight: bold;
+    font-family: 'OCR A Std', monospace;
+    background-color: #e00061;
+    color: #e47a00;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.2s ease;
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    transform: rotate(-30deg)
+}
+
+.confetti-button:hover {
+    color: #7ed6ec;
+}
+
+
 
 
 

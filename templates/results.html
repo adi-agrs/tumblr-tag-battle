@@ -3,15 +3,43 @@
 <head>
     <title>Results — Tumblr Tag Battle</title>
     <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            background-color: #000000;
+            color: #fafafa;
+        }
+
+        body {
+            background-image: radial-gradient(#fafafa 1px, transparent 1px);
+        }
+
+        h2 {
+            color: #fafafa
+        }
+
+        h3 {
+            color: #fafafa
+        }
+
+        a {
+        text-decoration: none;
+        cursor: pointer;
+        color: #e00b00;
+        }
+
+        a:hover {
+        cursor: pointer;
+        color: #3fcfcf;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 </head>
 <body>
-    <div class="inverted-background" id="loading-screen" style="display: none; align-items: center; justify-content: center;">
-    <div class="spinner"></div>
-    </div>
-
     <div class="wave-left"></div>
     <div class="wave-right"></div>
-
+    <audio id="confetti-sound" src="/static/sounds/confetti_sound.mp3"></audio>
+    <audio id="snap-sound" src="/static/sounds/snap_sound.mp3"></audio>
     <div class="cursor">
         <div class="circle"></div>
         <div class="circle"></div>
@@ -34,33 +62,36 @@
         <div class="circle"></div>
         <div class="circle"></div>
     </div>
-
     <div class="content">
-        <h1>#{{ tag1 }} vs #{{ tag2 }}</h1>
-
-        {% if winner %}
-            <h2>🏆 Winner: #{{ winner }}!</h2>
-        {% else %}
-            <h2>🤝 It's a tie!</h2>
-        {% endif %}
-
-        <div>
-            <h3>#{{ tag1 }} — {{ notes_1 }} total notes</h3>
-            {% for post in top_posts_1 %}
-                <p>{{ post.blog_name }} — {{ post.note_count }} notes
-                (❤️ {{ post.like_count }} | 🔁 {{ post.reblog_count }} | 💬 {{ post.reply_count }})</p>
-            {% endfor %}
+        <div class="results-container">
+            <button class="confetti-button" onclick="fireConfetti()">confetti!</button>
+            <h2>#{{ tag1 }} vs #{{ tag2 }}</h2>
+            {% if winner %}
+                <h1> Winner: #{{ winner }}!</h1> 
+            {% else %}
+                <h1>🤝 It's a tie!</h1> 
+            {% endif %}
+            <div>
+                <h3>#{{ tag1 }} — {{ notes_1 }} total notes</h3>
+                {% for post in top_posts_1 %}
+                    <p>{{ post.blog_name }} — {{ post.note_count }} notes
+                    (❤️ {{ post.like_count }} | 🔁 {{ post.reblog_count }} | 💬 {{ post.reply_count }})</p>
+                {% endfor %}
+            </div>
+            <div>
+                <h3>#{{ tag2 }} — {{ notes_2 }} total notes</h3>
+                {% for post in top_posts_2 %}
+                    <p>{{ post.blog_name }} — {{ post.note_count }} notes
+                    (❤️ {{ post.like_count }} | 🔁 {{ post.reblog_count }} | 💬 {{ post.reply_count }})</p>
+                {% endfor %}
+            </div>
+            <a href="/">← Try another battle</a>
         </div>
 
-        <div>
-            <h3>#{{ tag2 }} — {{ notes_2 }} total notes</h3>
-            {% for post in top_posts_2 %}
-                <p>{{ post.blog_name }} — {{ post.note_count }} notes
-                (❤️ {{ post.like_count }} | 🔁 {{ post.reblog_count }} | 💬 {{ post.reply_count }})</p>
-            {% endfor %}
-        </div>
-        <a href="/">← Try another battle</a>
     </div>
     <script src="/static/script.js"></script>
+    <script>
+        fireConfetti();
+    </script>
 </body>
 </html>

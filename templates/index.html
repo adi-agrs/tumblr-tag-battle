@@ -3,60 +3,58 @@
 <head>
     <title>Tumblr Tag Battle</title>
     <link rel="stylesheet" href="/static/style.css">
-
-
-<div class="content">
 </head>
-<body>
-    <h1> Tumblr Tag Battle </h1>
-</body>
 </html><!DOCTYPE html>
 <html>
 <head>
     <title>Results — Tumblr Tag Battle</title>
 </head>
 <body>
-    <div class="wave-left"></div>
-    <div class="wave-right"></div>
-    <div class="cursor">
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-    </div>
-
-    <form action="/compare" method="POST">
-        <div class="form-row"> 
-            <span class="tag-input"><input type="text" name="tag1" placeholder="#tag_1"> </span>
-            <img src="/static/images/sword-fight.svg" class="vs-icon">
-            <span class="tag-input"><input type="text" name="tag2" placeholder="#tag_2"> </span>
+        <div class="inverted-background" id="loading-screen" style="display: none; align-items: center; justify-content: center;">
+        <div class="spinner"></div>
         </div>
 
-        <button type="submit">fight!</button>
-    </form>
-    <div style="text-align: center;">
-        <a href="/">← Try another battle</a>
+        <div class="wave-left"></div>
+        <div class="wave-right"></div>
+
+        <div class="cursor">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+
+    <div class="content">
+        <h1>Tumblr Tag Battle</h1>
+
+        <form action="/compare" method="POST">
+            <div class="form-row"> 
+                <span class="tag-input"><input type="text" name="tag1" placeholder="#tag_1"> </span>
+                <img src="/static/images/sword-fight.svg" class="vs-icon">
+                <span class="tag-input"><input type="text" name="tag2" placeholder="#tag_2"> </span>
+            </div>
+
+            <button type="submit">fight!</button>
+        </form>
+
+        <div style="text-align: center;"> <a href="/">← Try another battle</a> </div>
+        <script src="/static/script.js"></script>
     </div>
-    <script src="/static/script.js"></script>
-
- 
 </body>
-</div>
-
 </html>

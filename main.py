@@ -30,10 +30,11 @@ while(1):
         break
 
 # TODO: 
-# - Crown winner based on higher number of total notes between two tags (DONE)
-# - Display the breakdown of each post in the leaderboard (like, reblog, reply) (KINDA DONE)
-# - get some way to extract the image form highest liked tag post and display it on the website 
-# - Implement a simple web interface to display the results
+# - work on loading screen 
+# - work on getting images for the tag 
+# - work on comparison page 
+# - make into an actual website 
+# - done
 
 # note - theres probably no point in displaying the breakdown of each post since the leaderboard is pretty limited..
 # get the post breakdown for the leaderboard posts, no need to give out the sums. 

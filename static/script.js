@@ -5,7 +5,7 @@ const cursor = document.querySelector(".cursor");
 
 let isHolding = false;
 let circleSize = 90;
-const maxSize = 500;
+const maxSize = 200;
 const baseSize = 90;
 let growSpeed = 5; // Adjust this value to control the growth speed
 let circleOffset = 40;
@@ -32,9 +32,7 @@ cursor.style.left = y;
 circles.forEach(function (circle, index) {
     circle.style.left = x - circleOffset + "px";
     circle.style.top = y - circleOffset + "px";
-
     circle.style.scale = (circles.length - index) / circles.length;
-
     circle.x = x;
     circle.y = y;
 
@@ -86,14 +84,38 @@ const form = document.querySelector("form");
 const waveLeft = document.querySelector(".wave-left");
 const waveRight = document.querySelector(".wave-right");
 
-form.addEventListener("submit", function(e) {
-    e.preventDefault();
-    
-    waveLeft.style.width = "50vw";
-    waveRight.style.width = "50vw";
-    
-    setTimeout(function() {
-        document.querySelector(".content").classList.add("hidden");
-        form.submit();
-    }, 900);
-});
+if (form) {
+    form.addEventListener("submit", function(e) {
+        e.preventDefault();
+        
+        waveLeft.style.width = "50vw";
+        waveRight.style.width = "50vw";
+        
+        setTimeout(function() {
+            document.querySelector(".content").classList.add("hidden");
+            document.querySelector(".wave-left").style.width = "0";
+            document.querySelector(".wave-right").style.width = "0";
+            document.getElementById("loading-screen").style.display = "flex";
+            form.submit(); // Now submit the form after the animation
+        }, 900);
+
+    });
+}
+
+const a = document.querySelector("a");
+
+if (a) {
+    a.addEventListener("click", function(e) {
+        e.preventDefault();
+
+        waveLeft.style.width = "50vw";
+        waveRight.style.width = "50vw";
+
+        setTimeout(function() {
+            document.querySelector(".content").classList.add("hidden");
+            document.querySelector(".wave-left").style.width = "0";
+            document.querySelector(".wave-right").style.width = "0";
+            window.location.href = a.href;
+        }, 900);
+    });
+}

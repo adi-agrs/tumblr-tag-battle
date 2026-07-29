@@ -35,6 +35,4 @@ def analyze_tag(tag):
         post["like_count"] = breakdown["like"]
         post["reblog_count"] = breakdown["reblog"]
         post["reply_count"] = breakdown["reply"]
-        time.sleep(0.1)  # Sleep to avoid hitting rate limits.
-
     return top_posts, total_notes_for_tag

@@ -12,6 +12,7 @@ body {
     margin: 60px auto;
     padding: 0 24px;
     max-width: 2200px;
+    min-height: 100vh;
 }
 
 body::-webkit-scrollbar {
@@ -58,7 +59,7 @@ h3 {
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #999;
+    color: #000000;
     margin-bottom: 16px;
 }
 
@@ -67,6 +68,7 @@ body {
     background-image: radial-gradient(#000000 1px, transparent 1px);
     background-size: 24px 24px;
 }
+
 
 .form-row {
     display: flex;
@@ -79,7 +81,7 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 16px;
+    gap: 8px;
 }
 
 form {
@@ -96,15 +98,27 @@ button {
     font-weight: bold;
     font-family: 'OCR A Std', monospace;
     background-color: #000000;
-    color: #ffffff;
+    color: #fafafa;
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.2s ease;
+}
+
+button:hover {
+    background-color: #e00061;
+    color: #fafafa;
+    border: none;
 }
 
 a {
     text-decoration: none;
-    color: #220052;
+    cursor: pointer;
+    color: #000000;
+}
+
+a:hover {
+    cursor: pointer;
+    color: #e00b00;
 }
 
 .battle {
@@ -156,8 +170,72 @@ a {
     width: 90px;
     height: 90px;
     border-radius: 65px;
-    background-color: #fff;
+    background-color: #fafafa;
 }
+
+::selection {
+    background-color: #07be6c; /* the highlight color */
+    color: #fafafa; /* the text color when highlighted */
+}
+
+.tag-input {
+    background-color: #fafafa;
+    padding: 1px 50px;
+    outline: 2px solid #000000;
+}
+
+input {
+    color: black;
+    margin-left: 0px;
+    margin-top: 1px;
+    font-size: 2.6rem;
+    text-align: center;
+   
+}
+
+input::placeholder {
+    color: black;
+    margin-left: 0px;
+    margin-top: 3px;
+    font-size: 2.6rem;
+    text-align: center;
+}
+
+.vs-icon {
+    width: 60px;  /* adjust to fit */
+    margin: 0 20px;  /* space between the inputs */
+    height: auto;
+}
+
+.wave-left {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: white;
+    mix-blend-mode: difference;
+    z-index: 99998;
+    transition: width 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.wave-right {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100%;
+    background-color: white;
+    mix-blend-mode: difference;
+    z-index: 99998;
+    transition: width 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.hidden {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
 
 
 

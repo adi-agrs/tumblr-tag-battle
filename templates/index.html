@@ -6,12 +6,7 @@
 
 </head>
 <body>
-    <h1>⚔️ Tumblr Tag Battle</h1>
-    <form action="/compare" method="POST">
-        <input type="text" name="tag1" placeholder="Tag 1 (e.g. lestat)">
-        <input type="text" name="tag2" placeholder="Tag 2 (e.g. armand)">
-        <button type="submit">Battle!</button>
-    </form>
+    <h1> Tumblr Tag Battle </h1>
 </body>
 </html><!DOCTYPE html>
 <html>
@@ -19,30 +14,86 @@
     <title>Results — Tumblr Tag Battle</title>
 </head>
 <body>
-    <h1>⚔️ #{{ tag1 }} vs #{{ tag2 }}</h1>
-
-    {% if winner %}
-        <h2>🏆 Winner: #{{ winner }}!</h2>
-    {% else %}
-        <h2>🤝 It's a tie!</h2>
-    {% endif %}
-
-    <div>
-        <h3>#{{ tag1 }} — {{ notes_1 }} total notes</h3>
-        {% for post in top_posts_1 %}
-            <p>{{ post.blog_name }} — {{ post.note_count }} notes
-            (❤️ {{ post.like_count }} | 🔁 {{ post.reblog_count }} | 💬 {{ post.reply_count }})</p>
-        {% endfor %}
+    <div class="cursor">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
     </div>
 
-    <div>
-        <h3>#{{ tag2 }} — {{ notes_2 }} total notes</h3>
-        {% for post in top_posts_2 %}
-            <p>{{ post.blog_name }} — {{ post.note_count }} notes
-            (❤️ {{ post.like_count }} | 🔁 {{ post.reblog_count }} | 💬 {{ post.reply_count }})</p>
-        {% endfor %}
+    <form action="/compare" method="POST">
+        <div class="form-row"> 
+            <span class="tag-input"># <input type="text" name="tag1" placeholder="tag1"> </span>
+            <span class="vs">vs</span>
+            <span class="tag-input"># <input type="text" name="tag2" placeholder="tag2"> </span>
+        </div>
+        
+        <button type="submit">battle</button>
+    </form>
+    <div style="text-align: center;">
+        <a href="/">← Try another battle</a>
     </div>
 
-    <a href="/">← Try another battle</a>
+    <script> 
+    const coords = { x: 0, y: 0 };
+    const circles = document.querySelectorAll(".circle");
+
+    const cursor = document.querySelector(".cursor");
+
+    circles.forEach(function (circle, index) {
+    circle.x = 0;
+    circle.y = 0;
+    circle.style.backgroundColor = "blue";
+    });
+
+    window.addEventListener("mousemove", function (e) {
+    coords.x = e.clientX;
+    coords.y = e.clientY;
+    });
+
+    function animateCircles() {
+    let x = coords.x;
+    let y = coords.y;
+
+    cursor.style.top = x;
+    cursor.style.left = y;
+    
+    circles.forEach(function (circle, index) {
+        circle.style.left = x - 39 + "px";
+        circle.style.top = y - 39 + "px";
+
+        circle.style.scale = (circles.length - index) / circles.length;
+
+        circle.x = x;
+        circle.y = y;
+
+        const nextCircle = circles[index + 1] || circles[0];
+        x += (nextCircle.x - x) * 0.3;
+        y += (nextCircle.y - y) * 0.3;
+    });
+
+    requestAnimationFrame(animateCircles);
+    }
+
+    animateCircles();
+
+    </script>    
 </body>
+
 </html>

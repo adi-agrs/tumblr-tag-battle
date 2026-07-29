@@ -11,18 +11,46 @@ body {
     max-width: 800px;
     margin: 60px auto;
     padding: 0 24px;
+    max-width: 2200px;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 2rem;
+    font-family: inherit;
+    font-weight: bold;
+    width: 200px;
+}
+
+
+form {
+    display: flex;
+    flex-direction: row;
+    align-items: justify;
+    justify-content: center;
+    gap: 16px;
 }
 
 h1 {
-    font-size: 2rem;
+    text-align: center;
+    font-size: 6.9rem;
     font-weight: bold;
+    margin-top: 170px;
     margin-bottom: 8px;
 }
 
 h2 {
-    font-size: 1.1rem;
+    font-size: 3.5rem;
     font-weight: bold;
-    color: #555;
+    color: #000000;
+    text-align: center;
+    margin-top: 24px;
     margin-bottom: 48px;
 }
 
@@ -32,6 +60,44 @@ h3 {
     letter-spacing: 0.1em;
     color: #999;
     margin-bottom: 16px;
+}
+
+body {
+    background-color: #fafafa;
+    background-image: radial-gradient(#000000 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+.form-row {
+    display: flex;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #000000;
+    text-align: center;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+button {
+    font-size: 1.5rem;
+    padding: 12px 24px;
+    margin-bottom: 24px;
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .battle {
@@ -65,3 +131,26 @@ h3 {
 .back:hover {
     color: #111;
 }
+
+.cursor {
+  pointer-events: none;
+  position: fixed;
+  display: block;
+  border-radius: 0;
+  mix-blend-mode: difference;
+  top: 0;
+  left: 0;
+  z-index: 9999999999999999;  
+}
+
+.circle {
+    position: absolute;
+    display: block;
+    width: 90px;
+    height: 90px;
+    border-radius: 65px;
+    background-color: #fff;
+}
+
+
+

@@ -1,38 +1,62 @@
 import time
 from fetch import fetch_posts_for_tag
-from stats import rank_by_notes
-from config import fetch_limit, leaderboard_limit
+from config import fetch_limit
 from notes_breakdown import get_notes_breakdown
-import json
+from bs4 import BeautifulSoup
+
+def get_photo_url(post):
+    body = post.get("body", "")
+
+    if not body:
+        return None
+
+    soup = BeautifulSoup(body, "html.parser")
+    img = soup.find("img")
+
+    if img:
+        return img.get("src")
+
+    return None
+
+def get_top_photo(all_posts):
+    image_posts = [p for p in all_posts if get_photo_url(p)]
+
+    if not image_posts:
+        return None
+
+    for post in image_posts:
+        print(post["blog_name"], get_photo_url(post))
+
+    top_photo = max(image_posts, key=lambda p: p.get("note_count", 0))
+    return get_photo_url(top_photo)
+
 
 def analyze_tag(tag):
-
     total_notes_for_tag = 0
 
     print(f"Fetching posts for tag '{tag}'...\n")
     all_posts = fetch_posts_for_tag(tag=tag, max_posts=fetch_limit)
     print(f"Fetched {len(all_posts)} posts for tag '{tag}'.\n")
 
-    # top_posts is the base leaderboard.
+    if not all_posts:
+        return None, 0, None
 
-    top_posts = rank_by_notes(all_posts, top_n=leaderboard_limit)
-    print(f"Top {leaderboard_limit} for {tag} posts by note count:\n")
-
-    for post in all_posts: 
+    for post in all_posts:
         total_notes_for_tag += post["note_count"]
 
-    for post in top_posts:
-        print("Name:", post["blog_name"])
-        print("Note count:", post["note_count"])
-        print("---")
+    top_post = max(all_posts, key=lambda p: p.get("note_count", 0))
+
+    print(f"Top post: {top_post['blog_name']} with {top_post['note_count']} notes")
+
+    breakdown = get_notes_breakdown(top_post["blog_name"], top_post["id"])
+    top_post["like_count"] = breakdown["like"]
+    top_post["reblog_count"] = breakdown["reblog"]
+    top_post["reply_count"] = breakdown["reply"]
+
+    image_url = get_top_photo(all_posts)
 
     print("DONE!")
 
-    # Filling up each leaderboard post's dictionary with the breakdown of notes (like, reblog, reply)
+    print(image_url)
 
-    for post in top_posts:
-        breakdown = get_notes_breakdown(post["blog_name"], post["id"])
-        post["like_count"] = breakdown["like"]
-        post["reblog_count"] = breakdown["reblog"]
-        post["reply_count"] = breakdown["reply"]
-    return top_posts, total_notes_for_tag
+    return top_post, total_notes_for_tag, image_url

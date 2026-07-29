@@ -17,7 +17,7 @@
         <div class="wave-left"></div>
         <div class="wave-right"></div>
         <audio id="snap-sound" src="/static/sounds/snap_sound.mp3"></audio>
-
+        <audio id="error-sound" src="/static/sounds/error_sound.mp3"></audio>
         <div class="cursor">
             <div class="circle"></div>
             <div class="circle"></div>
@@ -43,7 +43,9 @@
 
     <div class="content">
         <h1>Tumblr Tag Battle</h1>
-
+        <div class="error-msg" id="error-msg" style="display: none;">
+            <p> tags can't be empty </p>
+        </div> 
         <form action="/compare" method="POST">
             <div class="form-row"> 
                 <span class="tag-input"><input type="text" name="tag1" placeholder="#tag_1"> </span>

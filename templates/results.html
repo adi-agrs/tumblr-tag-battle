@@ -65,29 +65,35 @@
     <div class="content">
         <div class="results-container">
             <button class="confetti-button" onclick="fireConfetti()">confetti!</button>
-            <h2>#{{ tag1 }} vs #{{ tag2 }}</h2>
+            <div class="image-frame">
+                {% if image_url_1 %}
+                    <img src="{{ image_url_1 }}" class="top-post-image">
+                {% endif %}
+            </div>
             {% if winner %}
-                <h1> Winner: #{{ winner }}!</h1> 
+                <h1>Winner: #{{ winner }}!</h1> 
             {% else %}
                 <h1>🤝 It's a tie!</h1> 
             {% endif %}
             <div>
                 <h3>#{{ tag1 }} — {{ notes_1 }} total notes</h3>
-                {% for post in top_posts_1 %}
-                    <p>{{ post.blog_name }} — {{ post.note_count }} notes
-                    (❤️ {{ post.like_count }} | 🔁 {{ post.reblog_count }} | 💬 {{ post.reply_count }})</p>
-                {% endfor %}
+                <p>{{ top_post_1.blog_name }} — {{ top_post_1.note_count }} notes
+                (❤️ {{ top_post_1.like_count }} | 🔁 {{ top_post_1.reblog_count }} | 💬 {{ top_post_1.reply_count }})</p>
+                <a href="{{ top_post_1.post_url }}" target="_blank">→ view top post</a>
             </div>
+
+            <br>
+
             <div>
                 <h3>#{{ tag2 }} — {{ notes_2 }} total notes</h3>
-                {% for post in top_posts_2 %}
-                    <p>{{ post.blog_name }} — {{ post.note_count }} notes
-                    (❤️ {{ post.like_count }} | 🔁 {{ post.reblog_count }} | 💬 {{ post.reply_count }})</p>
-                {% endfor %}
+                <p>{{ top_post_2.blog_name }} — {{ top_post_2.note_count }} notes
+                (❤️ {{ top_post_2.like_count }} | 🔁 {{ top_post_2.reblog_count }} | 💬 {{ top_post_2.reply_count }})</p>
+                <a href="{{ top_post_2.post_url }}" target="_blank">→ view top post</a>
             </div>
+
+            <br>
             <a href="/">← Try another battle</a>
         </div>
-
     </div>
     <script src="/static/script.js"></script>
     <script>

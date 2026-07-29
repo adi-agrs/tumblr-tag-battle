@@ -86,7 +86,25 @@ const waveRight = document.querySelector(".wave-right");
 if (form) {
     form.addEventListener("submit", function(e) {
         e.preventDefault();
+
+        const tag1 = form.querySelector('input[name="tag1"]').value.trim();
+        const tag2 = form.querySelector('input[name="tag2"]').value.trim();
+
+        if (!tag1 || !tag2) {
+            const errorSound = document.getElementById("error-sound");
+            if(errorSound) {
+                errorSound.currentTime = 0;
+                errorSound.play();
+            }
+            document.getElementById("error-msg").style.display = "flex";
+            setTimeout(function() {
+                    document.getElementById("error-msg").style.display = "none";
+            }, 3000); // hides after 3 seconds
+            return;
+        }
         
+
+
         waveLeft.style.width = "50vw";
         waveRight.style.width = "50vw";
         const sound = document.getElementById("snap-sound");

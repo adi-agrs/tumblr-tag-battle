@@ -1,4 +1,3 @@
-
 def display_leaderboard(top_posts):
     print("Which Leaderboard do you want to see? (1) Likes, (2) Reblogs, (3) Replies")
     response = input("Enter the number of your choice: ")

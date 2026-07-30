@@ -35,7 +35,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 </head>
-<body>
+<body class="results-page">
     <div class="wave-left"></div>
     <div class="wave-right"></div>
     <audio id="confetti-sound" src="/static/sounds/confetti_sound.mp3"></audio>
@@ -66,8 +66,8 @@
         <div class="results-container">
             <button class="confetti-button" onclick="fireConfetti()">confetti!</button>
             <div class="image-frame">
-                {% if image_url_1 %}
-                    <img src="{{ image_url_1 }}" class="top-post-image">
+                {% if winner_image_url %}
+                    <img src="{{ winner_image_url }}" class="top-post-image">
                 {% endif %}
             </div>
             {% if winner %}

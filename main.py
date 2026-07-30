@@ -1,42 +1,8 @@
 import sys
 from analyze import analyze_tag
-from leaderboards import display_leaderboard
 
 tag1 = sys.argv[1]
 tag2 = sys.argv[2]
 
 top_posts_1, notes_1 = analyze_tag(tag1)
 top_posts_2, notes_2 = analyze_tag(tag2)
-
-if notes_1 > notes_2:
-    print(f"\n🏆 Winner: #{tag1} with {notes_1} total notes!")
-elif notes_2 > notes_1:
-    print(f"\n🏆 Winner: #{tag2} with {notes_2} total notes!")
-else:
-    print(f"\n🤝 It's a tie! Both tags have {notes_1} notes.")
-
-print(f"\n Select tag to display leaderboard: (1) {tag1} or (2) {tag2}")
-tag_choice = input("Enter the number of your choice: ")
-
-while(1):
-    if tag_choice not in ["1", "2"]:
-        print("Invalid choice. Please enter 1 or 2.")
-        tag_choice = input("Enter the number of your choice: ")
-    elif tag_choice == "1":
-        display_leaderboard(top_posts_1)
-    elif tag_choice == "2":
-        display_leaderboard(top_posts_2)
-    else:
-        break
-
-# TODO: 
-# - work on loading screen (basic version done)
-# - customize the confetti more (done)
-# - make pressing the fight button on empty slots not crash the website
-# - work on getting images for the tag 
-# - work on comparison page 
-# - make into an actual website 
-# - 
-
-# note - theres probably no point in displaying the breakdown of each post since the leaderboard is pretty limited..
-# get the post breakdown for the leaderboard posts, no need to give out the sums. 

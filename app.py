@@ -17,10 +17,13 @@ def compare():
 
     if notes_1 > notes_2:
         winner = tag1
+        winner_image_url = image_url_1
     elif notes_2 > notes_1:
         winner = tag2
+        winner_image_url = image_url_2
     else:
         winner = None
+        winner_image_url = None
 
     return render_template(
         'results.html',
@@ -28,8 +31,7 @@ def compare():
         notes_1=notes_1, notes_2=notes_2,
         top_post_1=top_post_1,
         top_post_2=top_post_2,
-        image_url_1=image_url_1,
-        image_url_2=image_url_2,
+        winner_image_url=winner_image_url,
         winner=winner
     )
 

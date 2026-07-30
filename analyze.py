@@ -24,9 +24,6 @@ def get_top_photo(all_posts):
     if not image_posts:
         return None
 
-    for post in image_posts:
-        print(post["blog_name"], get_photo_url(post))
-
     top_photo = max(image_posts, key=lambda p: p.get("note_count", 0))
     return get_photo_url(top_photo)
 
@@ -34,9 +31,9 @@ def get_top_photo(all_posts):
 def analyze_tag(tag):
     total_notes_for_tag = 0
 
-    print(f"Fetching posts for tag '{tag}'...\n")
+    # print(f"Fetching posts for tag '{tag}'...\n")
     all_posts = fetch_posts_for_tag(tag=tag, max_posts=fetch_limit)
-    print(f"Fetched {len(all_posts)} posts for tag '{tag}'.\n")
+    # print(f"Fetched {len(all_posts)} posts for tag '{tag}'.\n")
 
     if not all_posts:
         return None, 0, None
@@ -46,7 +43,7 @@ def analyze_tag(tag):
 
     top_post = max(all_posts, key=lambda p: p.get("note_count", 0))
 
-    print(f"Top post: {top_post['blog_name']} with {top_post['note_count']} notes")
+    # print(f"Top post: {top_post['blog_name']} with {top_post['note_count']} notes")
 
     breakdown = get_notes_breakdown(top_post["blog_name"], top_post["id"])
     top_post["like_count"] = breakdown["like"]
@@ -55,8 +52,6 @@ def analyze_tag(tag):
 
     image_url = get_top_photo(all_posts)
 
-    print("DONE!")
-
-    print(image_url)
+    # print("DONE!")
 
     return top_post, total_notes_for_tag, image_url

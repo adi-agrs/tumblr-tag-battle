@@ -311,7 +311,7 @@ input::placeholder {
     width: 400px;
     height: 400px; /* change this to whatever frame size you want */
     margin: 16px auto;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .top-post-image {
@@ -324,6 +324,5 @@ input::placeholder {
 .results-container h1 {
     margin-top: 20px;
 }
-
 
 

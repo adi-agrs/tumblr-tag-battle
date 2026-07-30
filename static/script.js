@@ -122,26 +122,27 @@ if (form) {
     });
 }
 
-const a = document.querySelector("a");
+const allLinks = document.querySelectorAll("a");
 
-if (a) {
-    a.addEventListener("click", function(e) {
+allLinks.forEach(function(link) {
+    link.addEventListener("click", function(e) {
         e.preventDefault();
 
-        waveLeft.style.width = "50vw";
-        waveRight.style.width = "50vw";
         const sound = document.getElementById("snap-sound");
         sound.currentTime = 0; // resets to start if already playing
         sound.play();
+        waveLeft.style.width = "50vw";
+        waveRight.style.width = "50vw";
 
         setTimeout(function() {
-            document.querySelector(".content").classList.add("hidden");
+            const content = document.querySelector(".content");
+            if (content) content.classList.add("hidden");
             document.querySelector(".wave-left").style.width = "0";
             document.querySelector(".wave-right").style.width = "0";
-            window.location.href = a.href;
+            window.location.href = link.href;
         }, 900);
     });
-}
+});
 
 function fireConfetti() {
     const sound = document.getElementById("confetti-sound");

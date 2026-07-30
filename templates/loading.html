@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Battling...</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            background-color: #000000;
+            color: #fafafa;
+        }
+
+        body {
+            background-image: radial-gradient(#fafafa 1px, transparent 1px);
+        }
+
+        h1, h2, h3, p, a {
+            color: #fafafa;
+        }
+
+        .fake-winner {
+            font-size: 6rem;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .fake-stats {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-top: 24px;
+            color: #999;
+        }
+
+        .fake-tag {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-top: 48px;
+            color: #fafafa;
+        }
+
+        .fake-notes {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="wave-left"></div>
+    <div class="wave-right"></div>
+
+    <div class="cursor">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+
+    <div class="content">
+        <div class="results-container">
+
+            <div class="fake-winner" id="fake-winner">Winner: #{{ tag1 }}</div>
+
+            <div class="fake-tag">#{{ tag1 }} — <span class="fake-notes" id="fake-notes-1">0</span> total notes</div>
+            <div class="fake-stats">
+                <span id="fake-blog-1">loading...</span> — 
+                ❤️ <span id="fake-likes-1">0</span> | 
+                🔁 <span id="fake-reblogs-1">0</span> | 
+                💬 <span id="fake-replies-1">0</span>
+            </div>
+
+            <br>
+
+            <div class="fake-tag">#{{ tag2 }} — <span class="fake-notes" id="fake-notes-2">0</span> total notes</div>
+            <div class="fake-stats">
+                <span id="fake-blog-2">loading...</span> — 
+                ❤️ <span id="fake-likes-2">0</span> | 
+                🔁 <span id="fake-reblogs-2">0</span> | 
+                💬 <span id="fake-replies-2">0</span>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+    <script>
+        const tag1 = "{{ tag1 }}";
+        const tag2 = "{{ tag2 }}";
+
+        const fakeBlogNames = [
+            "vampirelovers", "darkpoetry", "nightowl", "moonchild",
+            "gothicrose", "shadowdancer", "crimsonink", "lonelystar",
+            "velvetthunder", "neonghostly", "softapocalypse", "wanderingchaos",
+            "glitchcore99", "pastelgothic", "hauntedlibrary", "staticdream",
+            "midnightrambler", "coffeeandchaos", "desertmoth", "urbanwitch",
+            "spacebrained", "quietcatastrophe", "foggymorning", "inkandashes",
+            "strangelybeautiful", "rottenflowers", "lostinthewoods", "goldenruin",
+            "drowninginbooks", "chaoticcottage", "softterror", "nocturnalvibes",
+            "tiredandwired", "cosmictrash", "honeybeecore", "violetdusk",
+            "forestgremlin", "saltandstardust", "brokenradio", "auroraseeker",
+            "melancholyjukebox", "thunderkitten", "graveyardpoet", "silentfilm",
+            "glasshalffull", "abstractdreamer", "frostbitten", "lavenderriot",
+            "cryptidcore", "celestialwreck", "perpetuallyonline", "darlingdisaster",
+            "moonlitrampage", "softanarchy", "sunsetgothic", "echochamber",
+            "wanderingspectre", "quietpanic", "hazeandglow", "staticnoise"
+        ];
+
+        function randomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function randomBlog() {
+            return fakeBlogNames[Math.floor(Math.random() * fakeBlogNames.length)];
+        }
+
+        // tick fake numbers every 100ms
+        const ticker = setInterval(function() {
+            document.getElementById("fake-notes-1").textContent = randomInt(100, 9999);
+            document.getElementById("fake-notes-2").textContent = randomInt(100, 9999);
+            document.getElementById("fake-likes-1").textContent = randomInt(10, 500);
+            document.getElementById("fake-likes-2").textContent = randomInt(10, 500);
+            document.getElementById("fake-reblogs-1").textContent = randomInt(5, 200);
+            document.getElementById("fake-reblogs-2").textContent = randomInt(5, 200);
+            document.getElementById("fake-replies-1").textContent = randomInt(0, 50);
+            document.getElementById("fake-replies-2").textContent = randomInt(0, 50);
+            document.getElementById("fake-blog-1").textContent = randomBlog();
+            document.getElementById("fake-blog-2").textContent = randomBlog();
+
+            // randomly flip winner
+            const fakeWinner = Math.random() > 0.5 ? tag1 : tag2;
+            document.getElementById("fake-winner").textContent = "Winner: #" + fakeWinner;
+        }, 120);
+
+        // call /process in the background
+        fetch("/process", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: `tag1=${tag1}&tag2=${tag2}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "done") {
+                clearInterval(ticker); // stop the fake ticking
+                // wave transition then navigate to results
+                document.querySelector(".wave-left").style.width = "50vw";
+                document.querySelector(".wave-right").style.width = "50vw";
+                setTimeout(function() {
+                    window.location.href = "/results";
+                }, 900);
+            }
+        });
+    </script>
+</body>
+</html>

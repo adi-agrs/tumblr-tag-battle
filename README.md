@@ -8,6 +8,12 @@ Built as a personal project to explore API integration, OAuth authentication, da
 
 ---
 
+## Screenshots 
+
+![Index page](screenshots/homepage.png)
+![Loading page](screenshots/loading.png)
+![Results page](screenshots/winner.png)
+
 ## What it does
 
 - Fetches up to 100 recent posts (within the last year) for two Tumblr tags

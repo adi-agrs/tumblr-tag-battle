@@ -1,4 +1,4 @@
-# Tumblr Tag Battle
+![Index page](screenshots/title.png)
 
 Compare the popularity of two Tumblr tags head-to-head using real engagement data — total notes, likes, reblogs, and replies — and crown a winner.
 
